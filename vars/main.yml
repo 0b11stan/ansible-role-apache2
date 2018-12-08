@@ -1,0 +1,4 @@
+site_name: "< the name of your website (name of the virtualhost) >"
+git_address: "< uri to your git repo >"
+admin_email: "< admin email registered on the apache server >"
+document_root: "< the name of the directory containing your code in your git repository >"

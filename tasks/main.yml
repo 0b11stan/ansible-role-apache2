@@ -1,0 +1,39 @@
+- name: apache2 is installed
+  package:
+      name: apache2
+      state: present
+
+
+- name: configuration file is copided under sites-available
+  template:
+      src: apache.conf.j2
+      dest: "/etc/apache2/sites-available/{{ site_name }}.conf"
+      owner: root
+      group: root
+      mode: 0644
+  notify: reload apache2
+
+
+- name: project is pulled from the git repository
+  git:
+      repo: "{{ git_address }}"
+      dest: "/var/www/{{ site_name }}"
+      accept_hostkey: yes
+      version: master
+  notify:
+      - reload apache2
+
+
+- name: apache2 default site is disable
+  file:
+      path: /etc/apache2/sites-enabled/000-default.conf
+      state: absent
+  notify: reload apache2
+
+
+- name: {{ site_name }} site is enable
+  file:
+      src: "/etc/apache2/sites-available/{{ site_name }}.conf"
+      dest: "/etc/apache2/sites-enabled/{{ site_name }}.conf"
+      state: link
+  notify: reload apache2
