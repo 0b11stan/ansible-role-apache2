@@ -1,4 +1,4 @@
 site_name: "< the name of your website (name of the virtualhost) >"
-git_address: "< uri to your git repo >"
 admin_email: "< admin email registered on the apache server >"
-document_root: "< the name of the directory containing your code in your git repository >"
+document_root: "< the relative path of the root directory that will be served by apache (from /var/www/yoursite/...) >"
+git_address: "< uri to your git repo, empty if you don't want your project to be pulled from git from git >"
