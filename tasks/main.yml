@@ -30,7 +30,7 @@
   notify: reload apache2
 
 
-- name: {{ site_name }} site is enable
+- name: "{{ site_name }} site is enable"
   file:
       src: "/etc/apache2/sites-available/{{ site_name }}.conf"
       dest: "/etc/apache2/sites-enabled/{{ site_name }}.conf"
