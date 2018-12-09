@@ -18,7 +18,6 @@
   git:
       repo: "{{ git_address }}"
       dest: "/var/www/{{ site_name }}"
-      accept_hostkey: yes
       version: master
   notify: reload apache2
   when: git_address =! ""
